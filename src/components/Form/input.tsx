@@ -1,13 +1,13 @@
 import {
+  Input as ChakraInput,
+  InputProps as ChakraInputProps,
   FormControl,
   FormErrorMessage,
   FormLabel,
-  Input as ChakraInput,
-  InputProps as ChakraInputProps,
-  InputLeftElement,
   InputGroup,
+  InputLeftElement,
 } from '@chakra-ui/react';
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { FieldError } from 'react-hook-form';
 import { IconType } from 'react-icons';
 
@@ -18,6 +18,17 @@ interface InputProps extends ChakraInputProps {
   icon?: IconType;
 }
 
+type inputVariationOptions = {
+  [key: string]: string;
+};
+
+const inputVariation: inputVariationOptions = {
+  error: 'red.500',
+  default: 'gray.200',
+  focus: 'purple.800',
+  filled: 'green.500',
+};
+
 export const Input = ({
   name,
   error = null,
@@ -25,13 +36,35 @@ export const Input = ({
   label,
   ...rest
 }: InputProps) => {
+  const [variation, setVariation] = useState('default');
+
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (error) {
+      return setVariation('error');
+    }
+  }, [error]);
+
+  const handleInputFocus = useCallback(() => {
+    if (!error) {
+      return setVariation('focus');
+    }
+  }, [error]);
+
+  const handleInputBlur = useCallback(() => {
+    if (inputRef.current?.value && !error) {
+      return setVariation('filled');
+    }
+  }, [error]);
+
   return (
-    <FormControl>
-      {!!label && <FormLabel>Label</FormLabel>}
+    <FormControl isInvalid={!!error}>
+      {!!label && <FormLabel>{label}</FormLabel>}
 
       <InputGroup flexDirection={'column'}>
         {Icon && (
-          <InputLeftElement mt={'2.5'}>
+          <InputLeftElement color={inputVariation[variation]} mt={'2.5'}>
             <Icon />
           </InputLeftElement>
         )}
@@ -39,6 +72,10 @@ export const Input = ({
         <ChakraInput
           name={name}
           bg={'gray.50'}
+          color={inputVariation[variation]}
+          borderColor={inputVariation[variation]}
+          onFocus={handleInputFocus}
+          onBlurCapture={handleInputBlur}
           variant={'outline'}
           _hover={{ bgColor: 'gray.100' }}
           _placeholder={{ color: 'gray.300' }}
