@@ -1,15 +1,39 @@
-import { Flex, Grid, Heading, Image, Text, VStack } from '@chakra-ui/react';
+import {
+  Button,
+  Flex,
+  Grid,
+  Heading,
+  Image,
+  Text,
+  VStack,
+} from '@chakra-ui/react';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm } from 'react-hook-form';
 import { FaEnvelope, FaLock } from 'react-icons/fa';
+import * as yup from 'yup';
 import LogoPrimary from '../../assets/logo-primary.svg';
 import { Input } from '../../components/Form/input';
-import { useForm } from 'react-hook-form';
+
+const signInSchema = yup.object().shape({
+  email: yup.string().required('Email obrigatório').email('Email inválido'),
+  password: yup.string().required('Senha obrigatória'),
+});
+
+interface SignInData {
+  email: string;
+  password: string;
+}
 
 export const Login = () => {
   const {
     formState: { errors },
     register,
     handleSubmit,
-  } = useForm();
+  } = useForm({
+    resolver: yupResolver(signInSchema),
+  });
+
+  const handleSignIn = (data: SignInData) => console.log(data);
 
   return (
     <Flex
@@ -34,9 +58,10 @@ export const Login = () => {
           </Text>
         </Grid>
         <Grid
+          onSubmit={handleSubmit(handleSignIn)}
           as={'form'}
           mt={'4'}
-          w={'100%'}
+          w={'50%'}
           padding={'30px 15px'}
           border={'3px solid'}
           borderColor={'gray.100'}
@@ -48,14 +73,21 @@ export const Login = () => {
             <Input
               placeholder={'Digite seu login'}
               icon={FaEnvelope}
+              label='Login'
+              type='email'
+              error={errors.email}
               name='email'
             />
             <Input
               placeholder={'Digite sua senha'}
               icon={FaLock}
+              label='Senha'
+              type='password'
+              error={errors.password}
               {...register('password')}
             />
           </VStack>
+          <Button type='submit'>Entrar</Button>
         </Grid>
       </Flex>
     </Flex>
