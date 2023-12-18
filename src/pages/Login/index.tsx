@@ -15,6 +15,7 @@ import { FaEnvelope, FaLock } from 'react-icons/fa';
 import * as yup from 'yup';
 import LogoPrimary from '../../assets/logo-primary.svg';
 import { Input } from '../../components/Form/input';
+import { useAuth } from '../../contexts/AuthContext';
 
 const signInSchema = yup.object().shape({
   email: yup.string().required('Email obrigatório').email('Email inválido'),
@@ -28,6 +29,7 @@ interface SignInData {
 
 export const Login = () => {
   const [loading, setLoading] = useState(false);
+  const { signIn } = useAuth();
 
   const {
     formState: { errors },
@@ -37,7 +39,12 @@ export const Login = () => {
     resolver: yupResolver(signInSchema),
   });
 
-  const handleSignIn = (data: SignInData) => console.log(data);
+  const handleSignIn = (data: SignInData) => {
+    setLoading(true);
+    signIn(data)
+      .then((_) => setLoading(false))
+      .catch((err) => setLoading(false));
+  };
 
   return (
     <Flex
@@ -59,7 +66,7 @@ export const Login = () => {
         flexDirection={['column', 'column', 'row', 'row']}
         alignItems={'center'}
       >
-        <Grid w={['100%', '100%', '50%', '50%']} >
+        <Grid w={['100%', '100%', '50%', '50%']}>
           <Image
             src={LogoPrimary}
             alt='doit'
@@ -77,7 +84,7 @@ export const Login = () => {
         <Grid
           onSubmit={handleSubmit(handleSignIn)}
           as={'form'}
-          w={['100%', '100%', '40%', '40%']}
+          w={['100%', '320px', '350px', '400px']}
           mt={['4', '4', '0', '0']}
           padding={'30px 15px'}
           border={'3px solid'}
