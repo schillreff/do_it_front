@@ -7,7 +7,13 @@ import {
   InputGroup,
   InputLeftElement,
 } from '@chakra-ui/react';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import {
+  ForwardRefRenderFunction,
+  forwardRef,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react';
 import { FieldError } from 'react-hook-form';
 import { IconType } from 'react-icons';
 
@@ -29,16 +35,12 @@ const inputVariation: inputVariationOptions = {
   filled: 'green.500',
 };
 
-export const Input = ({
-  name,
-  error = null,
-  icon: Icon,
-  label,
-  ...rest
-}: InputProps) => {
+const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
+  { name, error = null, icon: Icon, label, ...rest },
+  ref,
+) => {
   const [variation, setVariation] = useState('default');
-
-  const inputRef = useRef<HTMLInputElement>(null);
+  const [value, setValue] = useState('');
 
   useEffect(() => {
     if (error) {
@@ -53,14 +55,14 @@ export const Input = ({
   }, [error]);
 
   const handleInputBlur = useCallback(() => {
-    if (inputRef.current?.value && !error) {
+    if (value.length > 1 && !error) {
       return setVariation('filled');
     }
-  }, [error]);
+  }, [error, value]);
 
   return (
     <FormControl isInvalid={!!error}>
-      {!!label && <FormLabel>{label}</FormLabel>}
+      {!!label && <FormLabel>{label}</FormLabel>} 
 
       <InputGroup flexDirection={'column'}>
         {Icon && (
@@ -71,16 +73,18 @@ export const Input = ({
 
         <ChakraInput
           name={name}
-          bg={'gray.50'}
-          color={inputVariation[variation]}
-          borderColor={inputVariation[variation]}
-          onFocus={handleInputFocus}
+          onChangeCapture={(event) => setValue(event.currentTarget.value)}
           onBlurCapture={handleInputBlur}
+          onFocus={handleInputFocus}
+          borderColor={inputVariation[variation]}
+          color={inputVariation[variation]}
+          bg={'gray.50'}
           variant={'outline'}
           _hover={{ bgColor: 'gray.100' }}
           _placeholder={{ color: 'gray.300' }}
           size={'lg'}
           h={'60px'}
+          ref={ref}
           {...rest}
         />
 
@@ -89,3 +93,5 @@ export const Input = ({
     </FormControl>
   );
 };
+
+export const Input = forwardRef(InputBase);
