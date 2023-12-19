@@ -32,6 +32,7 @@ interface AuthContextData {
   user: User;
   accessToken: string;
   signIn: (credentials: SignInCredentials) => Promise<void>;
+  signOut: () => void;
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
@@ -68,9 +69,16 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     setData({ accessToken, user });
   }, []);
 
+  const signOut = useCallback(() => {
+    localStorage.removeItem('@Doit:accessToken');
+    localStorage.removeItem('@Doit:user');
+
+    setData({} as AuthState);
+  }, []);
+
   const value = useMemo(
-    () => ({ signIn, user: data.user, accessToken: data.accessToken }),
-    [signIn, data.accessToken, data.user],
+    () => ({ signIn, signOut, user: data.user, accessToken: data.accessToken }),
+    [signIn, signOut, data.accessToken, data.user],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
