@@ -55,7 +55,7 @@ export const SignUp = () => {
         w={['100%', '100%', '90%', '65%']}
         justifyContent={'center'}
         flexDirection={['column', 'column', 'row', 'row']}
-        alignItems={'center'}
+        // alignItems={'center'}
       >
         <SignupForm
           handleSignUp={handleSubmit(handleSignUp)}
