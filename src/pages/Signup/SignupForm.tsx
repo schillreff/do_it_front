@@ -82,7 +82,7 @@ export const SignupForm = ({
 
     <Button
       w={'100%'}
-      mt={'4'}
+      mt={'8'}
       isLoading={loading}
       bg={'purple.800'}
       color={'white'}
