@@ -2,6 +2,6 @@ import { Center, Text } from '@chakra-ui/react';
 
 export const GoBackButton = () => {
   <Center as='button'>
-    <Text>Voltar</Text>
+    <Text>Button Voltar</Text>
   </Center>;
 };
