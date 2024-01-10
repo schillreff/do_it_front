@@ -1,10 +1,11 @@
-import { Flex } from '@chakra-ui/react';
+import { Flex, useBreakpointValue } from '@chakra-ui/react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { SignupForm } from './SignupForm';
 import { SignupInfo } from './SignupInfo';
+import { GoBackButton } from './GoBackButton';
 
 const signUpSchema = yup.object().shape({
   name: yup.string().required('Nome obrigatório'),
@@ -37,6 +38,11 @@ export const SignUp = () => {
     console.log(data);
   };
 
+  const isWideVersion = useBreakpointValue({
+    base: false,
+    md: true,
+  });
+
   return (
     <Flex
       padding={['10px 15px', '10px 15px', '0px', '0px']}
@@ -56,13 +62,29 @@ export const SignUp = () => {
         justifyContent={'center'}
         flexDirection={['column', 'column', 'row', 'row']}
       >
-        <SignupForm
-          handleSignUp={handleSubmit(handleSignUp)}
-          errors={errors}
-          register={register}
-          loading={loading}
-        />
-        <SignupInfo />
+        {isWideVersion ? (
+          <>
+            <GoBackButton top='160' left='25' />
+            <SignupForm
+              handleSignUp={handleSubmit(handleSignUp)}
+              errors={errors}
+              register={register}
+              loading={loading}
+            />
+            <SignupInfo />
+          </>
+        ) : (
+          <>
+            <GoBackButton top='10' left='75vw' />
+            <SignupInfo />
+            <SignupForm
+              handleSignUp={handleSubmit(handleSignUp)}
+              errors={errors}
+              register={register}
+              loading={loading}
+            />
+          </>
+        )}
       </Flex>
     </Flex>
   );
