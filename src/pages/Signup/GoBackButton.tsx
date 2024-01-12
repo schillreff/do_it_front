@@ -9,7 +9,7 @@ interface GoBackButtonProps {
 }
 
 export const GoBackButton = ({ top, left }: GoBackButtonProps) => {
-  const history = useHistory( );
+  const history = useHistory();
 
   return (
     <Center
