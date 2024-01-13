@@ -64,7 +64,7 @@ export const SignUp = () => {
       >
         {isWideVersion ? (
           <>
-            <GoBackButton top='160' left='25' />
+            <GoBackButton top='85' left='24' />
             <SignupForm
               handleSignUp={handleSubmit(handleSignUp)}
               errors={errors}
