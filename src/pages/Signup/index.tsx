@@ -2,13 +2,14 @@ import { Flex, useBreakpointValue, useDisclosure } from '@chakra-ui/react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
 import * as yup from 'yup';
+import { ModalError } from '../../components/Modal/ModalError';
+import { ModalSuccess } from '../../components/Modal/ModalSuccess';
+import { api } from '../../services/api';
+import { GoBackButton } from './GoBackButton';
 import { SignupForm } from './SignupForm';
 import { SignupInfo } from './SignupInfo';
-import { GoBackButton } from './GoBackButton';
-import { api } from '../../services/api';
-import { ModalSuccess } from '../../components/Modal/ModalSuccess';
-import { ModalError } from '../../components/Modal/ModalError';
 
 const signUpSchema = yup.object().shape({
   name: yup.string().required('Nome obrigatório'),
@@ -70,9 +71,18 @@ export const SignUp = () => {
     md: true,
   });
 
+  const history = useHistory();
+
   return (
     <>
-      <ModalSuccess isOpen={isModalSuccessOpen} onClose={onModalSuccessClose} />
+      <ModalSuccess
+        buttonMMessage='Ir para o login agora'
+        message='Seu cadastro deu super certo, <b>vamos lá</b>'
+        onClick={() => history.push('/')}
+        secondaryText='Você já pode começar criando <b>suas listas</b> de tarefas agora mesmo...'
+        isOpen={isModalSuccessOpen}
+        onClose={onModalSuccessClose}
+      />
       <ModalError
         error={error}
         isOpen={isModalErrorOpen}
