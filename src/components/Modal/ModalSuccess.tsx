@@ -55,12 +55,11 @@ export const ModalSuccess = ({
       </ModalHeader>
       <ModalBody textAlign={'center'}>
         <Text>
-          {' '}
           <Box
             dangerouslySetInnerHTML={{
               __html: message,
             }}
-          ></Box>
+          />
         </Text>
       </ModalBody>
       <ModalFooter flexDirection={'column'}>
@@ -79,7 +78,7 @@ export const ModalSuccess = ({
             dangerouslySetInnerHTML={{
               __html: secondaryText,
             }}
-          ></Box>
+          />
         </Text>
       </ModalFooter>
     </ModalContent>
