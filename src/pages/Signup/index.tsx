@@ -87,6 +87,8 @@ export const SignUp = () => {
         error={error}
         isOpen={isModalErrorOpen}
         onClose={onModalErrorClose}
+        secondaryText='Você já pode tentar novamente, <b>clicando</b> no botão acima ou
+        aguarde alguns minutos ...'
       />
       <Flex
         padding={['10px 15px', '10px 15px', '0px', '0px']}
