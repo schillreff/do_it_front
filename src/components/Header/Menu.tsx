@@ -14,7 +14,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import { FiLogOut } from 'react-icons/fi';
 import { theme } from '../../styles/theme';
 
-interface MenuProps {
+interface MenuProps {   
   isOpen: boolean;
   onClose: () => void;
 }
@@ -26,7 +26,7 @@ export const Menu = ({ isOpen, onClose }: MenuProps) => {
       <DrawerOverlay mt={'9vh'} />
       <DrawerContent ml={'auto'} mt={'80px'} w={['450px', '350px']}>
         <DrawerHeader
-          borderBottomWidth='1px'
+          borderBottomWidth={'1px'}
           borderColor={'gray.50'}
           color={'gray.400'}
         >
