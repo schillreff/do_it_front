@@ -9,6 +9,7 @@ export const theme = extendTheme({
       900: '#190429',
     },
     gray: {
+      25: '#F5F5F5',
       50: '#F6F6F7',
       100: '#EEE',
       200: '#D4D4D4',
@@ -42,7 +43,7 @@ export const theme = extendTheme({
       '9xl': '8rem',
     },
     styles: {
-      global: { 
+      global: {
         body: {
           bg: 'white',
           color: 'gray.900',
