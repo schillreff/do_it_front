@@ -3,6 +3,7 @@ import {
   Button,
   Center,
   HStack,
+  Heading,
   Modal,
   ModalBody,
   ModalContent,
@@ -89,6 +90,9 @@ export const ModalTaskDetail = ({
         </ModalHeader>
 
         <ModalBody textAlign={'center'}>
+          <Heading as={'h1'} fontSize={'2xl'}>
+            {task.title}
+          </Heading>
           <Text>{task.description}</Text>
         </ModalBody>
 
