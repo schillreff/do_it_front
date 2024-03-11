@@ -1,6 +1,6 @@
 import {
-  Input as ChakraInput,
-  InputProps as ChakraInputProps,
+  Textarea as ChakraTextArea,
+  TextareaProps as ChakraTextAreaProps,
   FormControl,
   FormErrorMessage,
   FormLabel,
@@ -17,7 +17,7 @@ import {
 import { FieldError } from 'react-hook-form';
 import { IconType } from 'react-icons';
 
-interface InputProps extends ChakraInputProps {
+interface InputProps extends ChakraTextAreaProps {
   name: string;
   label?: string;
   error?: FieldError | null;
@@ -35,7 +35,7 @@ const inputVariation: inputVariationOptions = {
   filled: 'green.500',
 };
 
-const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
+const TextareaBase: ForwardRefRenderFunction<HTMLTextAreaElement, InputProps> = (
   { name, error = null, icon: Icon, label, ...rest },
   ref,
 ) => {
@@ -71,7 +71,7 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
           </InputLeftElement>
         )}
 
-        <ChakraInput
+        <ChakraTextArea
           id={name}
           name={name}
           onChangeCapture={(event) => setValue(event.currentTarget.value)}
@@ -98,4 +98,4 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
   );
 };
 
-export const Input = forwardRef(InputBase);
+export const TextArea = forwardRef(TextareaBase);
