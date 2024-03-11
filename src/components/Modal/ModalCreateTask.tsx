@@ -107,7 +107,7 @@ export const ModalCreateTask = ({ isOpen, onClose }: ModalCreateTaskProps) => {
 
         <ModalFooter flexDirection={'column'}>
           <Button
-            type='submit'
+            type={'submit'}
             bg={'purple.500'}
             color={'white'}
             w={'100%'}
