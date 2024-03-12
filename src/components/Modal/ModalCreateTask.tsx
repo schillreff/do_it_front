@@ -97,7 +97,7 @@ export const ModalCreateTask = ({ isOpen, onClose }: ModalCreateTaskProps) => {
               placeholder={'Digite o título'}
             />
             <TextArea
-              label='Descrição'
+              label={'Descrição'}
               error={errors.description}
               {...register('description')}
               placeholder={'Digite a descrição'}
