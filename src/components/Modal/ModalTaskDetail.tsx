@@ -1,6 +1,4 @@
 import {
-  Box,
-  Button,
   Center,
   HStack,
   Heading,
@@ -10,12 +8,12 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  Text,
+  Text
 } from '@chakra-ui/react';
 import { FaCheck, FaExclamation, FaTimes, FaTrash } from 'react-icons/fa';
-import { theme } from '../../styles/theme';
 import { useAuth } from '../../contexts/AuthContext';
 import { useTasks } from '../../contexts/TasksContext';
+import { theme } from '../../styles/theme';
 
 interface Task {
   id: string;
