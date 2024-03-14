@@ -15,25 +15,21 @@ export const Dashboard = () => {
     loadTasks(user.id, accessToken).then((res) => setLoading(false));
   }, []);
 
-  
-
   return (
-    <>
-      <Box>
-        <Header />
-        <SearchBox />
-        <Grid
-          w={'100%'}
-          templateColumns={'repeat(auto-fill, minmax(420px, 1fr))'}
-          gap={10}
-          paddingX={'8'}
-          mt={'8'}
-        >
-          {tasks.map((task) => (
-            <Card task={task} />
-          ))}
-        </Grid>
-      </Box>
-    </>
+    <Box>
+      <Header />
+      <SearchBox />
+      <Grid
+        w={'100%'}
+        templateColumns={'repeat(auto-fill, minmax(420px, 1fr))'}
+        gap={10}
+        paddingX={'8'}
+        mt={'8'}
+      >
+        {tasks.map((task) => (
+          <Card task={task} key={task.id} />
+        ))}
+      </Grid>
+    </Box>
   );
 };
