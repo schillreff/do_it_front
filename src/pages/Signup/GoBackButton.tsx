@@ -13,7 +13,7 @@ export const GoBackButton = ({ top, left }: GoBackButtonProps) => {
 
   return (
     <Center
-      as='button'
+      as={'button'}
       position={'absolute'}
       top={top}
       left={left}
