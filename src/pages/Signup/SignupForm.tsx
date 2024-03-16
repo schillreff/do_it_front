@@ -43,7 +43,7 @@ export const SignupForm = ({
       <Input
         placeholder={'Digite seu nome'}
         icon={FaUser}
-        label='Nome'
+        label={'Nome'}
         error={errors.name}
         {...register('name')}
       />
@@ -51,8 +51,8 @@ export const SignupForm = ({
         <Input
           placeholder={'Digite seu login'}
           icon={FaEnvelope}
-          label='Email'
-          type='email'
+          label={'Email'}
+          type={'email'}
           error={errors.email}
           {...register('email')}
         />
@@ -65,16 +65,16 @@ export const SignupForm = ({
       <Input
         placeholder={'Digite sua senha'}
         icon={FaLock}
-        label='Senha'
-        type='password'
+        label={'Senha'}
+        type={'password'}
         error={errors.password}
         {...register('password')}
       />
       <Input
         placeholder={'Confirme sua senha'}
         icon={FaLock}
-        label='Confirmaçao de senha'
-        type='password'
+        label={'Confirmaçao de senha'}
+        type={'password'}
         error={errors.confirm_password}
         {...register('confirm_password')}
       />
