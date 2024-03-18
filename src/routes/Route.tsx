@@ -22,7 +22,7 @@ export const Route = ({
         ) : (
           <Redirect to={isPrivate ? '/' : '/dashboard'} />
         )
-      }
+      }  
     />
   );
 };

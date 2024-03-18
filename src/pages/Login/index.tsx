@@ -39,7 +39,7 @@ export const Login = () => {
   return (
     <Flex
       padding={['10px 15px', '10px 15px', '0px', '0px']}
-      alignItems='center'
+      alignItems={'center'}
       justifyContent={'center'}
       height={['auto', 'auto', '100vh', '100vh']}
       bgGradient={[
