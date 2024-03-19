@@ -23,7 +23,7 @@ export const SearchBox = () => {
           <Input name='title' placeholder='Pesquisar por tarefa' w={'35vw'} />
           <Center
             borderRadius={'8px'}
-            as='button'
+            as={'button'}
             ml={'2'}
             w={'65px'}
             h={'60px'}
