@@ -91,7 +91,7 @@ export const ModalCreateTask = ({ isOpen, onClose }: ModalCreateTaskProps) => {
         <ModalBody textAlign={'center'}>
           <VStack spacing={'5'}>
             <Input
-              label='Título'
+              label={'Título'}
               error={errors.title}
               {...register('title')}
               placeholder={'Digite o título'}
