@@ -101,7 +101,7 @@ export const SignUp = () => {
           'linear(to-l, purple.800 65%, white 35%)',
           'linear(to-l, purple.800 65%, white 35%)',
         ]}
-        color='white'
+        color={'white'}
       >
         <Flex
           w={['100%', '100%', '90%', '65%']}
