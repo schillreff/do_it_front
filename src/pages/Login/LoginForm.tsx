@@ -57,8 +57,8 @@ export const LoginForm = ({
         <Input
           placeholder={'Digite sua senha'}
           icon={FaLock}
-          label='Senha'
-          type='password'
+          label={'Senha'}
+          type={'password'}
           error={errors.password}
           {...register('password')}
         />
