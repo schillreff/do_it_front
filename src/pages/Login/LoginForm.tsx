@@ -44,7 +44,7 @@ export const LoginForm = ({
             placeholder={'Digite seu login'}
             icon={FaEnvelope}
             label={'Email'}
-            type='email'
+            type={'email'}
             error={errors.email}
             {...register('email')}
           />
